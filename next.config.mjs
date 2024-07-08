@@ -4,7 +4,7 @@ const nextConfig = {
 		remotePatterns: [
 			{
 				protocol: "https",
-				hostname: "i2o.scdn.co",
+				hostname: "i.scdn.co",
 				port: "",
 				pathname: "/image/**",
 			},

@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { encodeBase64 } from "@/utils/string-utilities";
 
 export async function POST(request) {
     const refreshToken = (await request.json()).refresh_token;
@@ -8,10 +9,10 @@ export async function POST(request) {
             'Content-Type': 'application/x-www-form-urlencoded',
             'Authorization': `Basic ${encodeBase64(`${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`)}`
         },
-        body: {
+        body: new URLSearchParams({
             grant_type: 'refresh_token',
             refresh_token: refreshToken,
-        }
+        })
     })
 
     const data = await resp.json();
