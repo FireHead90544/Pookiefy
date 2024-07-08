@@ -11,7 +11,7 @@ export async function GET(request){
 
     const cookieStore = cookies()
     const cookieState = cookieStore.get('state')?.value;
-    cookieStore.set('state', '', { expires: new Date(0) })
+    cookieStore.delete('state')
 
     if(state !== cookieState){
         return NextResponse.redirect(`${host}/api/authorize`)
@@ -31,6 +31,8 @@ export async function GET(request){
     })
 
     const data = await resp.json();
+    cookieStore.set('access_token', data.access_token)
+    cookieStore.set('refresh_token', data.refresh_token)
 
-    return NextResponse.redirect(`${host}/?access_token=${data.access_token}&refresh_token=${data.refresh_token}`);
+    return NextResponse.redirect(`${host}/`);
 }
