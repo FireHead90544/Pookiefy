@@ -5,7 +5,7 @@ import PookiefyAuthorize from '@/components/PookiefyAuthorize';
 import PookiefyNowPlaying from '@/components/PookiefyNowPlaying';
 import PookiefyLoading from "@/components/PookiefyLoading";
 
-const PageHandler = ({ ...tokens }) => {
+const PageHandler = ({ tokens }) => {
   const [loading, setLoading] = useState(true);
   const [isAuthorized, setIsAuthorized] = useState(false);
 
@@ -20,9 +20,9 @@ const PageHandler = ({ ...tokens }) => {
 
     if (access_token && refresh_token) {
       setIsAuthorized(true);
-      setLoading(false);
     }
-  })
+    setLoading(false);
+  }, [])
 
   return loading ? <PookiefyLoading /> : (isAuthorized ? <PookiefyNowPlaying /> : <PookiefyAuthorize />);
 }

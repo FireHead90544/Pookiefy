@@ -8,7 +8,7 @@ export default function Home() {
 
   return (
     <main className="h-screen p-24">
-      <PageHandler tokens={{ accessToken, refreshToken }} />
+      <PageHandler tokens={{ access_token: accessToken, refresh_token: refreshToken }} />
     </main>
   );
 }
