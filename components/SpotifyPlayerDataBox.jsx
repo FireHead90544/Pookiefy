@@ -81,59 +81,59 @@ const SpotifyPlayerDataBox = () => {
 	}, [tokens]);
 
 	return (
-		<div className="flex space-x-4 w-2/3 h-1/2 hover:scale-105 transition-all duration-500 ease-in-out cursor-pointer">
-			<div className="w-1/3 h-full border-2 rounded-sm border-[#191414]">
-				{playerData.imageUrl ? (
-					<Image
-						className="w-full h-full"
-						src={playerData.imageUrl}
-						alt={playerData.title}
-						width={640}
-						height={640}
-					/>
-				) : (
-					<AlbumImageErrorText />
-				)}
-			</div>
-			<div className="w-2/3 h-full border-2 rounded-sm border-[#191414]">
-				<div className="flex flex-col justify-center h-full">
-					{Object.keys(playerData).length !== 0 ? (
-						<>
-							<div className="h-2/3 p-8 flex-col items-center">
-								<Link href={playerData.url}>
-									<h1 className="text-2xl font-semibold">{playerData.title}</h1>
-								</Link>
-								<div className="flex space-x-2">
-									<Link href={playerData.album.url}>
-										<h2 className="text-lg font-light italic">
-											{playerData.album.name}
-										</h2>
-									</Link>
-									<h2 className="text-lg font-thin italic">
-										(
-										{playerData.artists.map((artist, index) => (
-											<React.Fragment key={artist.url}>
-												<Link href={artist.url}>{artist.name}</Link>
-												{index < playerData.artists.length - 1 && ", "}
-											</React.Fragment>
-										))}
-										)
-									</h2>
-								</div>
-							</div>
-							<div className="h-1/3 px-8 py-2">
-								<SpotifyPlayhead
-									progress={playerData.progress}
-									duration={playerData.duration}
-								/>
-							</div>
-						</>
-					) : (
-						<PlayerDataBoxErrorText />
-					)}
-				</div>
-			</div>
-		</div>
+		<div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 w-full md:w-2/3 h-auto md:h-1/2 hover:scale-105 transition-all duration-500 ease-in-out cursor-pointer">
+    <div className="w-full md:w-1/3 h-64 md:h-full border-2 rounded-sm border-[#191414]">
+      {playerData.imageUrl ? (
+        <Image
+          className="w-full h-full object-cover"
+          src={playerData.imageUrl}
+          alt={playerData.title}
+          width={640}
+          height={640}
+        />
+      ) : (
+        <AlbumImageErrorText />
+      )}
+    </div>
+    <div className="w-full md:w-2/3 h-64 md:h-full border-2 rounded-sm border-[#191414]">
+      <div className="flex flex-col justify-center h-full">
+        {Object.keys(playerData).length !== 0 ? (
+          <>
+            <div className="h-2/3 p-4 md:p-8 flex-col items-center">
+              <Link href={playerData.url}>
+                <h1 className="text-xl md:text-2xl font-semibold">{playerData.title}</h1>
+              </Link>
+              <div className="flex space-x-2">
+                <Link href={playerData.album.url}>
+                  <h2 className="text-sm md:text-lg font-light italic">
+                    {playerData.album.name}
+                  </h2>
+                </Link>
+                <h2 className="text-sm md:text-lg font-thin italic">
+                  (
+                  {playerData.artists.map((artist, index) => (
+                    <React.Fragment key={artist.url}>
+                      <Link href={artist.url}>{artist.name}</Link>
+                      {index < playerData.artists.length - 1 && ", "}
+                    </React.Fragment>
+                  ))}
+                  )
+                </h2>
+              </div>
+            </div>
+            <div className="h-1/3 px-4 md:px-8 py-2">
+              <SpotifyPlayhead
+                progress={playerData.progress}
+                duration={playerData.duration}
+              />
+            </div>
+          </>
+        ) : (
+          <PlayerDataBoxErrorText />
+        )}
+      </div>
+    </div>
+  </div>
 	);
 }
 
