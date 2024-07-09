@@ -7,7 +7,7 @@ export default function Home() {
   const refreshToken = cookieStore.get("refresh_token")?.value;
 
   return (
-    <main className="h-screen p-24">
+    <main className="h-screen p-4 md:p-24">
       <PageHandler tokens={{ access_token: accessToken, refresh_token: refreshToken }} />
     </main>
   );
