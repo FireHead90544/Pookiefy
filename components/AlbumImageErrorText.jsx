@@ -3,7 +3,7 @@ import { PiSmileySadThin } from "react-icons/pi";
 
 const AlbumImageErrorText = () => {
   return (
-    <PiSmileySadThin className='w-full h-full ' />
+    <PiSmileySadThin className='w-full h-full' />
   )
 }
 
